@@ -9,6 +9,7 @@ from esphome.const import (
     CONF_ID,
     DEVICE_CLASS_BATTERY,
     DEVICE_CLASS_VOLTAGE,
+    DEVICE_CLASS_POWER,
     ENTITY_CATEGORY_DIAGNOSTIC,
     STATE_CLASS_MEASUREMENT,
     UNIT_PERCENT,
@@ -43,6 +44,10 @@ CONFIG_SCHEMA = (
                 state_class=STATE_CLASS_MEASUREMENT,
                 entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
             ),
+            cv.Optional(CONF_UPS_STATUS): binary_sensor.binary_sensor_schema(
+                device_class=DEVICE_CLASS_POWER,
+                entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
+            ),            
         }
     )
     .extend(cv.polling_component_schema("60s"))
@@ -63,6 +68,9 @@ async def to_code(config):
         sens = await sensor.new_sensor(config[CONF_BATTERY_LEVEL])
         cg.add(var.set_battery_remaining_sensor(sens))
 
+    if CONF_UPS_STATUS in config:
+        sens = await binary_sensor.new_binary_sensor(config[CONF_UPS_STATUS])
+        cg.add(var.set_ups_status_sensor(sens))
 
 UPS_18650_LITE_ACTION_SCHEMA = maybe_simple_id(
     {

@@ -19,10 +19,14 @@ class UPS_18650_LITEComponent : public PollingComponent, public i2c::I2CDevice {
   void set_battery_remaining_sensor(sensor::Sensor *battery_remaining_sensor) {
     battery_remaining_sensor_ = battery_remaining_sensor;
   }
+  void set_ups_status_sensor(binary_sensor::BinarySensor *ups_status_sensor) {
+    ups_status_sensor_ = ups_status_sensor;
+  }
 
  protected:
   sensor::Sensor *voltage_sensor_{nullptr};
   sensor::Sensor *battery_remaining_sensor_{nullptr};
+  binary_sensor::BinarySensor *ups_status_sensor_{nullptr};  
 };
 
 }  // namespace ups_18650_lite

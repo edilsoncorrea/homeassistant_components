@@ -38,6 +38,10 @@ void UPS_18650_LITEComponent::update() {
       this->status_clear_warning();
     }
   }
+  if (this->ups_status_sensor_ != nullptr) {
+    bool using_battery = digitalRead(1);  // Lê o estado do GPIO1
+    this->ups_status_sensor_->publish_state(using_battery);
+  }  
 }
 
 void UPS_18650_LITEComponent::setup() {
@@ -70,6 +74,8 @@ void UPS_18650_LITEComponent::setup() {
     this->mark_failed();
     return;
   }
+
+  pinMode(1, INPUT);  // Configura GPIO1 como entrada
 }
 
 void UPS_18650_LITEComponent::dump_config() {
@@ -81,6 +87,7 @@ void UPS_18650_LITEComponent::dump_config() {
   LOG_UPDATE_INTERVAL(this);
   LOG_SENSOR("  ", "Battery Voltage", this->voltage_sensor_);
   LOG_SENSOR("  ", "Battery Level", this->battery_remaining_sensor_);
+  LOG_BINARY_SENSOR("  ", "UPS Status", this->ups_status_sensor_);
 }
 
 float UPS_18650_LITEComponent::get_setup_priority() const { return setup_priority::DATA; }
