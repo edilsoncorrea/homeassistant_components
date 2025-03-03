@@ -1,7 +1,7 @@
 from esphome import automation
 from esphome.automation import maybe_simple_id
 import esphome.codegen as cg
-from esphome.components import i2c, sensor
+from esphome.components import i2c, sensor, binary_sensor
 import esphome.config_validation as cv
 from esphome.const import (
     CONF_BATTERY_LEVEL,
