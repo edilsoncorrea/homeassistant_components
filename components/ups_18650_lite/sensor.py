@@ -23,6 +23,8 @@ UPS_18650_LITEComponent = ups_18650_lite_ns.class_(
     "UPS_18650_LITEComponent", cg.PollingComponent, i2c.I2CDevice
 )
 
+CONF_UPS_STATUS = "ups_status"
+
 # Actions
 SleepAction = ups_18650_lite_ns.class_("SleepAction", automation.Action)
 
