@@ -1,6 +1,6 @@
 #include "ups_18650_lite.h"
 #include "esphome/core/log.h"
-#include "esphome/core/hal.h"
+#include "Arduino.h"
 
 namespace esphome {
 namespace ups_18650_lite {
