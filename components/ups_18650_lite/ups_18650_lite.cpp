@@ -62,19 +62,19 @@ void UPS_18650_LITEComponent::setup() {
   config_reg = i2c::i2ctohs(config_reg) & UPS_18650_LITE_CONFIG_SAFE_MASK;
   ESP_LOGV(TAG, "UPS_18650_LITE CONFIG register reads 0x%X", config_reg);
 
-  if (config_reg != UPS_18650_LITE_CONFIG_POWER_UP_DEFAULT) {
-    ESP_LOGE(TAG, "Device does not appear to be a UPS_18650_LITE");
-    this->status_set_error("unrecognised");
-    this->mark_failed();
-    return;
-  }
+  // if (config_reg != UPS_18650_LITE_CONFIG_POWER_UP_DEFAULT) {
+  //   ESP_LOGE(TAG, "Device does not appear to be a UPS_18650_LITE");
+  //   this->status_set_error("unrecognised");
+  //   this->mark_failed();
+  //   return;
+  // }
 
-  // need to write back to config register to reset the sleep bit
-  if (!this->write_byte_16(UPS_18650_LITE_CONFIG, UPS_18650_LITE_CONFIG_POWER_UP_DEFAULT)) {
-    this->status_set_error("sleep reset failed");
-    this->mark_failed();
-    return;
-  }
+  // // need to write back to config register to reset the sleep bit
+  // if (!this->write_byte_16(UPS_18650_LITE_CONFIG, UPS_18650_LITE_CONFIG_POWER_UP_DEFAULT)) {
+  //   this->status_set_error("sleep reset failed");
+  //   this->mark_failed();
+  //   return;
+  // }
 
   pinMode(1, INPUT);  // Configura GPIO1 como entrada
 }
