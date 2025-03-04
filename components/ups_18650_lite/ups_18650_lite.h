@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Arduino.h"
+#include "esphome/components/binary_sensor/binary_sensor.h"
 
 #include "esphome/core/component.h"
 #include "esphome/components/sensor/sensor.h"
