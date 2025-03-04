@@ -40,7 +40,7 @@ void UPS_18650_LITEComponent::update() {
     }
   }
   if (this->ups_status_sensor_ != nullptr) {
-    bool using_battery = digitalRead(1);  // Lê o estado do GPIO1
+    bool using_battery = ! digitalRead(1);  // Lê o estado do GPIO1
     this->ups_status_sensor_->publish_state(using_battery);
   }  
 }
