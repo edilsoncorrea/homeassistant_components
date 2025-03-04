@@ -8,7 +8,7 @@ namespace ups_18650_lite {
 
 template<typename... Ts> class SleepAction : public Action<Ts...> {
  public:
-  explicit SleepAction(ups_18650_liteComponent *ups_18650_lite) : ups_18650_lite_(ups_18650_lite) {}
+  explicit SleepAction(UPS_18650_LITEComponent *ups_18650_lite) : ups_18650_lite_(ups_18650_lite) {}
 
   void play(Ts... x) override { this->ups_18650_lite_->sleep_mode(); }
 
